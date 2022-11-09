@@ -2,11 +2,10 @@
 
 
 class Etablissement {
--id : int
 -nom : string
 -slug
 -description : text
--telephone : int
+-telephone : string
 -adresse : string
 -ville : string
 -email : string
@@ -18,22 +17,20 @@ class Etablissement {
 }
 
 class Ville {
--id : int
 -nom : string
--CP : string
+-codePostal : string
 -departement : string
--numéro_departement : int
--région : string
+-numero_departement : string
+-region : string
 }
 
 class Categorie {
--id : int
 -nom : string
 -createdAt : string
 }
 
-Etablissement "1..*" -- "0..1*" Categorie
-Etablissement "1..1" -- "0..*" Ville
+Etablissement "0..*" -- "1..*" Categorie
+Etablissement "0..*" -- "1..1" Ville
 
 
 
