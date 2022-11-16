@@ -45,12 +45,15 @@ class ImportVille extends Command
 
 //query your records from the document
         $records = $stmt->process($csv);
-        $i=0;
         foreach ($records as $record) {
 
             if ($record["Département"]==25 || $record["Département"]==39 || $record["Département"]==70 || $record["Département"]==90){
                 $ville = new Ville();
-                $ville->setNom($record["Commune"]);
+                if(empty($record["Ancienne commune"])){
+                    $ville->setNom($record["Commune"]);
+                }else {
+                    $ville->setNom($record["Commune"]." ".$record["Ancienne commune"]);
+                }
                 $ville->setCodePostal($record["Code postal"]);
                 $ville->setDepartement($record["Nom département"]);
                 $ville->setNumDepartement($record["Département"]);
