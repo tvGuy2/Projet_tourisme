@@ -41,7 +41,6 @@ class EtablissementFixtures extends Fixture
 
         for ($i = 0; $i <= 100; $i++) {
             $numVille = $faker->numberBetween($minVille->getId(), $maxVille->getId());
-            $numCategorie = $faker->numberBetween($minCategorie->getId(), $maxCategorie->getId());
             $etablissement = new Etablissement();
             $etablissement->setNom($faker->realTextBetween(5, 20))
                 ->setSlug($this->slugger->slug($etablissement->getNom())->lower())
@@ -50,7 +49,7 @@ class EtablissementFixtures extends Fixture
                 ->setEmail($faker->email())
 
                 // a modifier car chaque établissement n'a pas forcement une image
-                ->setImage($faker->imageUrl(360, 360, 'établissement', true, 'hotel'))
+
 
                 ->setTelephone($faker->phoneNumber())
                 ->setActif($faker->boolean())
@@ -58,8 +57,8 @@ class EtablissementFixtures extends Fixture
                 ->setCreatedAt($faker->dateTimeBetween('-20 years'))
                 ->setVille($this->villeRepository->find($numVille))
 
-                // a modifier car une seule catégorie par établissement
-                ->addCategorie($this->categorieRepository->find($numCategorie));
+                ->addCategorie($this->categorieRepository->find($faker->numberBetween($minCategorie->getId(),$maxCategorie->getId())))
+                ->addCategorie($this->categorieRepository->find($faker->numberBetween($minCategorie->getId(),$maxCategorie->getId())));
 
             $manager->persist($etablissement);
 

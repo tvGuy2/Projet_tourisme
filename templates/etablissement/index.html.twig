@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EtablissementController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <h1>Liste des établissements actifs</h1>
+        <ul>
+        {% for etablissement in etablissements %}
+            <li>{{ etablissement.nom}},{{ etablissement.description}},{{ etablissement.ville.codePostal}} </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+
+
+    <div class="navigation d-flex justify-content-center">
+        {{ knp_pagination_render(etablissements) }}
+    </div>
+{% endblock %}
