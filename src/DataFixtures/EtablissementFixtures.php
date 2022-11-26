@@ -57,6 +57,7 @@ class EtablissementFixtures extends Fixture
                 ->setCreatedAt($faker->dateTimeBetween('-20 years'))
                 ->setVille($this->villeRepository->find($numVille))
 
+
                 ->addCategorie($this->categorieRepository->find($faker->numberBetween($minCategorie->getId(),$maxCategorie->getId())))
                 ->addCategorie($this->categorieRepository->find($faker->numberBetween($minCategorie->getId(),$maxCategorie->getId())));
 
