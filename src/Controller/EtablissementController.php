@@ -28,12 +28,23 @@ class EtablissementController extends AbstractController
     public function getEtablissements(Request $request,PaginatorInterface $paginator): Response
     {
         $etablissements = $paginator->paginate(
-            $this->etablissementRepository->findBy(["actif" => true],["nom" => "DESC",]), /* query NOT result */
-            $request->query->getInt('page', 1),10);
+            $this->etablissementRepository->findBy(["actif" => true],["nom" => "ASC",]), /* query NOT result */
+            $request->query->getInt('page', 1),12);
 
         return $this->render('etablissement/index.html.twig', [
             'etablissements' => $etablissements,
 
         ]);
     }
+
+    #[Route('/etablissement/{slug}', name: 'app_etablissement_slug')]
+    public function getDetailsEtablissement(Request $request,$slug): Response
+    {
+
+        return $this->render('etablissement/etablissement.html.twig', [
+            'etablissement' => $this->etablissementRepository->findOneBy(["slug" => $slug]),
+
+        ]);
+    }
+
 }

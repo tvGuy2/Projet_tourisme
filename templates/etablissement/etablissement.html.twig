@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EtablissementController!{% endblock %}
+
+{% block body %}
+
+
+    <div class="container d-flex justify-content-center mt-5 mb-5">
+            <div class="card text-center" style="width: 60rem;">
+                <img src="https://www.genifoncier.com/assets/images/no_image.jpg" class="img-thumbnail"  alt="...">
+                <br class="card-body">
+                    <h5 class="card-title">{{ etablissement.nom}}</h5></br>
+                    <p class="card-text">Cette établissement à été créé le {{ etablissement.createdAt | date("d/m/Y")  }}.<br>  Il se situe dans la ville de {{ etablissement.ville.nom}} dans le département du {{ etablissement.ville.numDepartement}} alias {{ etablissement.ville.departement}}.</p>
+                    <p class="card-text">Adresse :  <strong>{{ etablissement.adresse }} {{ etablissement.ville.codePostal}} </strong> </p>
+                    <p class="card-text">{{ etablissement.description}}</p>
+                <p class="card-text">Pour prendre une réservation veuillez nous contacter par téléphone <strong>{{ etablissement.telephone }}</strong></br> ou bien par mail <strong>{{ etablissement.email}}</strong></p>
+                </div>
+            </div>
+    </div>
+
+
+
+
+{% endblock %}

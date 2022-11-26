@@ -3,15 +3,38 @@
 {% block title %}Hello EtablissementController!{% endblock %}
 
 {% block body %}
-    <div class="container">
 
-        <h1>Liste des établissements actifs</h1>
-        <ul>
+
+
+
+
+
+
+    <h1 class="text-center m-5 text-decoration-underline">Liste des établissements actifs</h1>
+
+    <div class="container ">
+        <div class="row">
         {% for etablissement in etablissements %}
-            <li>{{ etablissement.nom}},{{ etablissement.description}},{{ etablissement.ville.codePostal}} </li>
+            <div class="col-4">
+        <div class="card m- mb-5 text-center " style="width: 26rem;" >
+            <img src="https://www.genifoncier.com/assets/images/no_image.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ etablissement.nom}}</h5>
+                <p class="card-text">{{ etablissement.description[:75] ~ (etablissement.description|length > 75 ? '...')  }}  </p>
+                <p class="card-text">Ville : {{ etablissement.ville.nom}} {{ etablissement.ville.codePostal}} </p>
+                <a href="{{ path('app_etablissement_slug',{slug : etablissement.slug}) }}">plus d'info </a>
+            </div>
+        </div>
+        </div>
         {% endfor %}
-        </ul>
+        </div>
     </div>
+
+
+
+
+
+
 
 
 
