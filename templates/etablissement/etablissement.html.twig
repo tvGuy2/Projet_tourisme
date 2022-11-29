@@ -12,11 +12,18 @@
                 {% else %}
                     <img src="{{ etablissement.image }}" class="card-img-top" alt="...">
                 {% endif %}
-                <br class="card-body">
+                <br class="card-body ">
                     <h5 class="card-title">{{ etablissement.nom}}</h5></br>
-                <p class="card-text">Cette établissement à été créé le <strong>{{ etablissement.createdAt | date("d/m/Y")  }}.</strong><br>  Il se situe dans la ville de {{ etablissement.ville.nom}} dans le département du {{ etablissement.ville.numDepartement}} alias {{ etablissement.ville.departement}}.<br>Cet établissement est considéré comme un {% for categorie in etablissement.categorie %}
-                        <strong>{{ categorie.nom }}</strong>
-                        {% endfor %}.</p>
+                <p class="card-text">Cet établissement a été créé le <strong>{{ etablissement.createdAt | date("d/m/Y")  }}.</strong><br>
+                    Il se situe dans la ville de {{ etablissement.ville.nom}} dans le département du {{ etablissement.ville.numDepartement}} alias {{ etablissement.ville.departement}}.<br>
+                    Cet établissement est considéré comme un :
+
+                    {% for categorie in etablissement.categorie %}
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>{{ categorie.nom }}</strong></li>
+                </ul>
+
+                        {% endfor %} </p>
                     <p class="card-text">Adresse :  <strong>{{ etablissement.adresse }} {{ etablissement.ville.codePostal}} </strong> </p>
                     <p class="card-text">{{ etablissement.description}}</p>
                 <p class="card-text">Pour prendre une réservation veuillez nous contacter par téléphone <strong>{{ etablissement.telephone }}</strong></br> ou bien par mail <strong>{{ etablissement.email}}</strong></p>

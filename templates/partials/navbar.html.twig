@@ -1,21 +1,23 @@
 
-
-<nav class="navbar navbar-expand-lg bg-secondary p-3">
+<nav class="navbar navbar-expand-lg navbar-light p-3 " style="background-color: #99908E; ">
+    <!-- Barre de navigation -->
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">FC-tourisme</a>
+        <a class="navbar-brand " style="" href="#"> FC-tourisme</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                    <a class="nav-link hover-underlign "href="#"><i class="bi bi-house-door-fill"></i>Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ path('app_etablissements') }}">Etablissements</a>
+                    <a class="nav-link" href="{{ path('app_etablissements') }}"><i class="fas fa-user-graduate me-2"></i>Etablissements</a>
                 </li>
-
             </ul>
+
         </div>
     </div>
 </nav>
+
+

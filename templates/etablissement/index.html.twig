@@ -15,8 +15,8 @@
     <div class="container ">
         <div class="row">
         {% for etablissement in etablissements %}
-            <div class="col-4">
-        <div class="card m- mb-5 text-center " style="width: 26rem;" >
+            <div class="col-md-4">
+        <div class="card m- mb-5 text-center "  >
             {% if etablissement.image is null %}
             <img src="https://www.genifoncier.com/assets/images/no_image.jpg" class="card-img-top" alt="..." >
             {% else %}
@@ -26,10 +26,14 @@
                 <h5 class="card-title">{{ etablissement.nom}}</h5>
                 <p class="card-text">{{ etablissement.description[:75] ~ (etablissement.description|length > 75 ? ' ...')  }}  </p>
                 <p class="card-text">Ville : {{ etablissement.ville.nom}} {{ etablissement.ville.codePostal}} </p>
+                <p class="card-text">
                 {% for categorie in etablissement.categorie %}
-                    <p class="card-text">{{ categorie.nom }}</p>
-                {% endfor %}
-                <a href="{{ path('app_etablissement_slug',{slug : etablissement.slug}) }}">plus d'info </a>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>{{ categorie.nom }}</strong></li>
+                    </ul>
+                {% endfor %} </p>
+
+                <a href="{{ path('app_etablissement_slug',{slug : etablissement.slug}) }}" class="" style="text-decoration: none;">plus d'info </a>
             </div>
         </div>
         </div>
