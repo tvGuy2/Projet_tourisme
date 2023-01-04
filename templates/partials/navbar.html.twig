@@ -18,13 +18,18 @@
 
             <ul class="navbar-nav">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <p>Email: {{ app.user.email }}</p>
+                    {% if app.user.pseudo %}
+                        <span class="me-4 navbar-text text-primary">{{ app.user.pseudo}}</span>
+                        {% else %}
+                    <span class="me-4 navbar-text text-primary">{{ app.user.email }}</span>
+                            {% endif %}
                     <li>
-                        <button type="submit">deconnexion</button>
+                        <a class="btn btn-danger" href="/logout" role="button"> Deconnexion</a>
                     </li>
+
                     {% else %}
-                        <li>
-                            <button type="submit">connexion</button>
+                        <li >
+                            <a class="btn btn-success" href="/security" role="button"> Connexion</a>
                         </li>
                 {% endif %}
 
