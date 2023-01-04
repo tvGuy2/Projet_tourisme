@@ -24,16 +24,16 @@
             {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ etablissement.nom}}</h5>
-                <p class="card-text">{{ etablissement.description[:75] ~ (etablissement.description|length > 75 ? ' ...')  }}  </p>
+                <p class="card-text">{{ etablissement.description[:75]}} ...  </p>
                 <p class="card-text">Ville : {{ etablissement.ville.nom}} {{ etablissement.ville.codePostal}} </p>
                 <p class="card-text">
                 {% for categorie in etablissement.categorie %}
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>{{ categorie.nom }}</strong></li>
-                    </ul>
+
+                        <span class="badge bg-success text-warp">{{ categorie.nom }}</span>
+
                 {% endfor %} </p>
 
-                <a href="{{ path('app_etablissement_slug',{slug : etablissement.slug}) }}" class="" style="text-decoration: none;">plus d'info </a>
+                <button><a href="{{ path('app_etablissement_slug',{slug : etablissement.slug}) }}" class="" style="text-decoration: none; color: slategray">plus d'info </a></button>
             </div>
         </div>
         </div>

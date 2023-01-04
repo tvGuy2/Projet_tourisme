@@ -17,7 +17,6 @@ class EtablissementFixtures extends Fixture
     private VilleRepository $villeRepository;
     private CategorieRepository $categorieRepository;
 
-    //Demander à symfony d'injecter le slugger au niveau du constructeur
 
     public function __construct(SluggerInterface $slugger, VilleRepository $villeRepository, CategorieRepository $categorieRepository)
     {
@@ -28,7 +27,7 @@ class EtablissementFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // Initialiser faker
+
         $faker = Factory::create("fr_FR");
         $totalVille = $this->villeRepository->findAll();
         $minVille = min($totalVille);
@@ -41,30 +40,29 @@ class EtablissementFixtures extends Fixture
 
         for ($i = 0; $i <= 100; $i++) {
             $numVille = $faker->numberBetween($minVille->getId(), $maxVille->getId());
+            $numImage = $faker->numberBetween(1,5);
             $etablissement = new Etablissement();
             $etablissement->setNom($faker->realTextBetween(5, 20))
                 ->setSlug($this->slugger->slug($etablissement->getNom())->lower())
                 ->setDescription($faker->paragraphs(3, true))
                 ->setAdresse($faker->streetAddress())
                 ->setEmail($faker->email())
-
-                // a modifier car chaque établissement n'a pas forcement une image
-
-
                 ->setTelephone($faker->phoneNumber())
                 ->setActif($faker->boolean())
                 ->setAccueil($faker->boolean())
-                ->setCreatedAt($faker->dateTimeBetween('-20 years'))
-                ->setVille($this->villeRepository->find($numVille))
+                ->setCreatedAt($faker->dateTimeBetween('-3 years'))
+                ->setVille($this->villeRepository->find($numVille));
+                if ($numImage>=3){
+                    $etablissement->setImage($faker->imageUrl(500,300,$etablissement->getNom(),true));
+                }
 
-
-                ->addCategorie($this->categorieRepository->find($faker->numberBetween($minCategorie->getId(),$maxCategorie->getId())))
+                $etablissement->addCategorie($this->categorieRepository->find($faker->numberBetween($minCategorie->getId(),$maxCategorie->getId())))
                 ->addCategorie($this->categorieRepository->find($faker->numberBetween($minCategorie->getId(),$maxCategorie->getId())));
 
             $manager->persist($etablissement);
 
         }
-        // Envoyer l'ordre INSERT vers la BDD
+
         $manager->flush();
 
     }

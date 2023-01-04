@@ -7,7 +7,6 @@ class Etablissement {
 -description : text
 -telephone : string
 -adresse : string
--ville : string
 -email : string
 -image : string
 -actif : bool
@@ -27,6 +26,18 @@ class Ville {
 class Categorie {
 -nom : string
 -createdAt : string
+}
+
+class User {
+-prenom : string
+-nom : string
+-pseudo : string
+-email : string
+-password : string
+-createdAt : datetime
+-updatedAt : datetime
+-role : string
+-actif : bool
 }
 
 Etablissement "0..*" -- "1..*" Categorie
