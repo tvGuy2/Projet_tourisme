@@ -16,6 +16,22 @@
                 </li>
             </ul>
 
+            <ul class="navbar-nav">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <p>Email: {{ app.user.email }}</p>
+                    <li>
+                        <button type="submit">deconnexion</button>
+                    </li>
+                    {% else %}
+                        <li>
+                            <button type="submit">connexion</button>
+                        </li>
+                {% endif %}
+
+
+
+            </ul>
+
         </div>
     </div>
 </nav>
