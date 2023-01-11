@@ -32,22 +32,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     #[Assert\NotBlank]
-    #[Assert\Length(min: 8 ,minMessage: "Le mot de passe doit avoir au moins 8 caractères")]
+    #[Assert\Length(min: 8 ,minMessage: "Le mot de passe doit avoir au moins {{ limit }} caractères")]
     private ?string $password = null;
 
     #[ORM\Column(length: 60)]
     #[Assert\NotBlank]
-    #[Assert\Length(min: 2 ,minMessage: "Le prénom doit comporter au moins 2 caractères")]
+    #[Assert\Length(min: 2 ,minMessage: "Le prénom doit comporter au moins {{ limit }} caractères")]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 60)]
     #[Assert\NotBlank]
-    #[Assert\Length(min: 2 ,minMessage: "Le nom doit comporter au moins 2 caractères")]
+    #[Assert\Length(min: 2 ,minMessage: "Le nom doit comporter au moins {{ limit }} caractères")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 60, nullable: true)]
     #[Assert\NotBlank]
-    #[Assert\Length(min: 2 ,minMessage: "Le pseudo doit comporter au moins 2 caractères")]
+    #[Assert\Length(min: 2 ,minMessage: "Le pseudo doit comporter au moins {{ limit }} caractères")]
     private ?string $pseudo = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]

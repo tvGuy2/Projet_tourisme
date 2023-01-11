@@ -33,11 +33,20 @@ class UserFixtures extends Fixture
                 $user->setPseudo($faker->word());
             }
 
-            $user->setRoles(['ROLE_USER']);
+            $randomArray = rand(0,5);
+            if ($randomArray == 0){
+                $user->setRoles(['ROLE_ADMIN']);
+            }
+            elseif ($randomArray == 1){
+                $user->setRoles(['ROLE_RESTAURANT']);
+            }
+            else{
+                $user->setRoles(['ROLE_USER']);
+            }
+
             $manager->persist($user);
 
         }
-
 
         $manager->flush();
     }

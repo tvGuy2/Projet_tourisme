@@ -6,14 +6,22 @@
 
 
     <div class="container d-flex justify-content-center mt-5 mb-5">
-            <div class="card text-center" style="width: 60rem;">
+            <div class="card text-center" style="width: 50rem;">
                 {% if etablissement.image is null %}
                     <img src="https://www.genifoncier.com/assets/images/no_image.jpg" class="card-img-top" alt="..." >
                 {% else %}
                     <img src="{{ etablissement.image }}" class="card-img-top" alt="...">
                 {% endif %}
+
                 <br class="card-body ">
-                    <h5 class="card-title">{{ etablissement.nom}}</h5></br>
+                    <h5 class="card-title">{{ etablissement.nom}}
+                        <a href="{{ path('app_etablissements_favori',{slug : etablissement.slug}) }}"class="" style="text-decoration: none; color: slategray">
+                            {% if etablissement in app.user.getFavoris %}<i class="bi bi-heart-fill"></i>
+                            {% else %}<i class="bi bi-heart"></i>
+                            {% endif %}
+                        </a></h5></br>
+
+
                 <p class="card-text">Cet établissement a été créé le <strong>{{ etablissement.createdAt | date("d/m/Y")  }}.</strong><br>
                     Il se situe dans la ville de {{ etablissement.ville.nom}} dans le département du {{ etablissement.ville.numDepartement}} alias {{ etablissement.ville.departement}}.<br>
                     Cet établissement est considéré comme un :
@@ -27,9 +35,12 @@
                     <p class="card-text"><i class="bi bi-geo-alt"></i> <strong>{{ etablissement.adresse }} {{ etablissement.ville.codePostal}} </strong> </p>
                     <p class="card-text">{{ etablissement.description}}</p>
                 <p class="card-text">Pour prendre une réservation veuillez nous contacter par <i class="bi bi-telephone-fill"></i> <strong>{{ etablissement.telephone }}</strong></br> ou bien par <i class="bi bi-envelope-at-fill"></i> <strong>{{ etablissement.email}}</strong> </p>
-                </div>
+
+                <button><a href="{{ path('app_etablissements_slug',{slug : etablissement.slug}) }}" class="" style="text-decoration: none; color: slategray"><i class="fa-regular fa-star"></i> </a></button>
             </div>
     </div>
+
+
 
 
 
