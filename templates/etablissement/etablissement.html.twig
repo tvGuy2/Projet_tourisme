@@ -16,8 +16,10 @@
                 <br class="card-body ">
                     <h5 class="card-title">{{ etablissement.nom}}
                         <a href="{{ path('app_etablissements_favori',{slug : etablissement.slug}) }}"class="" style="text-decoration: none; color: slategray">
+                            {% if app.user %}
                             {% if etablissement in app.user.getFavoris %}<i class="bi bi-heart-fill"></i>
                             {% else %}<i class="bi bi-heart"></i>
+                            {% endif %}
                             {% endif %}
                         </a></h5></br>
 

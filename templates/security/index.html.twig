@@ -7,15 +7,22 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form action="{{ path('app_security') }}" method="post">
-        <label for="username">Email:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}">
+    <div class="d-flex justify-content-center">
+        <div class="col-sm-6">
+            <form action="{{ path('app_security') }}" method="post" class="p-4 bg-light">
+                <div class="form-group">
+                    <label for="username">Email:</label>
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control form-control-sm" placeholder="Entrer votre email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="_password" class="form-control form-control-sm" placeholder="Password">
+                </div>
+                <input type="hidden" name="_target_path" value="/etablissements">
+                <button type="submit" class="btn btn-primary btn-block">login</button>
+            </form>
+        </div>
+    </div>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password">
 
-        <input type="hidden" name="_target_path" value="/etablissements">
-
-        <button type="submit" >login</button>
-    </form>
 {% endblock %}

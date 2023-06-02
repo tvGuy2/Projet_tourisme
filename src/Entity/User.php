@@ -31,8 +31,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank]
-    #[Assert\Length(min: 8 ,minMessage: "Le mot de passe doit avoir au moins {{ limit }} caractères")]
     private ?string $password = null;
 
     #[ORM\Column(length: 60)]
