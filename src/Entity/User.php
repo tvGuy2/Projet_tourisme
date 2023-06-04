@@ -44,7 +44,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $nom = null;
 
     #[ORM\Column(length: 60, nullable: true)]
-    #[Assert\NotBlank]
     #[Assert\Length(min: 2 ,minMessage: "Le pseudo doit comporter au moins {{ limit }} caractères")]
     private ?string $pseudo = null;
 
